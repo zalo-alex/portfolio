@@ -44,19 +44,24 @@ nav {
     padding: 20px;
     background-color: var(--secondary-bg);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 50px;
-    margin: 20px 30%;
+    margin: 20px auto;
+    max-width: 1400px;
 
     a {
         color: #fff;
         text-decoration: none;
+        font-size: 1rem;
     }
 }
 
 header, section {
-    padding: 100px 30%;
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
 
     h1, span {
         color: #fff;
@@ -68,7 +73,7 @@ header, section {
 }
 
 header {
-    padding: 100px 30%;
+    padding: 100px 5%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -78,17 +83,23 @@ header {
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 45px;
+        font-size: clamp(28px, 8vw, 45px);
+        text-align: center;
     }
 
     .aka {
         color: #aaa;
-        font-size: 14px;
+        font-size: clamp(12px, 3vw, 14px);
         font-weight: 400;
     }
 
     .accent {
         color: var(--accent-text);
+    }
+
+    .description {
+        font-size: clamp(14px, 2.5vw, 16px);
+        text-align: center;
     }
 }
 
@@ -103,7 +114,7 @@ header {
     transition: 0.5s;
     position: absolute;
     bottom: 0px;
-    right: 30%;
+    right: 5%;
     background-color: transparent;
     color: #000;
 
@@ -173,6 +184,7 @@ header {
         border: 1px solid rgba(255, 255, 255, 0.1);
         transition: background-color 0.2s, border-color 0.2s;
         margin-top: 10px;
+        font-size: clamp(13px, 2vw, 16px);
 
         svg {
             width: 16px;
@@ -191,13 +203,19 @@ header {
         background-color: var(--secondary-bg);
         padding: 20px;
         margin-bottom: 10px;
+        font-size: clamp(13px, 2vw, 16px);
+        line-height: 1.6;
+    }
+
+    span {
+        font-size: clamp(13px, 2vw, 16px);
     }
 }
 
 .formations {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 20px;
 
@@ -207,27 +225,45 @@ header {
         align-items: center;
         padding: 30px;
         background-color: var(--secondary-bg);
+        flex: 1;
+        min-width: 250px;
+        max-width: 400px;
 
         h3 {
             color: var(--accent-text);
+            font-size: clamp(16px, 3vw, 18px);
+            text-align: center;
+            margin-bottom: 15px;
         }
 
         .dates {
             color: var(--dimmed-text);
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 14px);
         }
 
         .infos {
             display: flex;
+            flex-direction: column;
             gap: 10px;
             align-items: center;
+            font-size: clamp(13px, 2vw, 15px);
+        }
+
+        span {
+            text-align: center;
         }
     }
 }
 
 .skills {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (min-width: 1024px) {
+        flex-direction: row;
+        gap: 10px;
+    }
 
     .skill-category {
         display: flex;
@@ -245,6 +281,15 @@ header {
             width: 100%;
             text-align: center;
             margin-bottom: 5px;
+            font-size: clamp(16px, 3vw, 18px);
+        }
+
+        span {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: #fff;
         }
     }
 }
@@ -259,10 +304,16 @@ header {
         flex-direction: column;
         gap: 5px;
         background-color: var(--secondary-bg);
-        padding: 10px 20px;
+        padding: 20px;
 
         h3 {
             color: var(--accent-text);
+            font-size: clamp(16px, 3vw, 18px);
+        }
+
+        span {
+            font-size: clamp(13px, 2vw, 15px);
+            line-height: 1.6;
         }
 
         .links {
@@ -292,8 +343,23 @@ header {
         display: flex;
         flex-direction: column;
         text-decoration: none;
-        width: 45%;
+        width: 100%;
         background-color: var(--secondary-bg);
+        
+        @media (min-width: 768px) {
+            width: calc(50% - 10px);
+        }
+
+        @media (min-width: 1024px) {
+            width: calc(33.333% - 14px);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
         
         span {
             display: flex;
@@ -303,6 +369,8 @@ header {
             img {
                 width: 32px;
                 height: 32px;
+                flex-shrink: 0;
+                aspect-ratio: 1/1;
             }
         }
     }
@@ -310,6 +378,7 @@ header {
 
 .contacts {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 
@@ -317,11 +386,13 @@ header {
         display: flex;
         align-items: center;
         gap: 5px;
+        font-size: clamp(13px, 2vw, 15px);
 
         svg {
             fill: #fff;
             width: 18px;
             height: 18px;
+            flex-shrink: 0;
         }
     }
 }
@@ -332,9 +403,82 @@ footer {
     justify-content: center;
     padding: 20px;
     background-color: var(--secondary-bg);
-    margin: 20px 30%;
+    margin: 20px auto;
+    max-width: 1400px;
 
     span {
         color: #fff;
+        font-size: clamp(12px, 2vw, 14px);
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    nav {
+        gap: 25px;
+        padding: 15px;
+    }
+
+    header, section {
+        padding: 60px 5%;
+    }
+
+    header h1 {
+        margin-bottom: 20px;
+    }
+
+    .formations {
+        .formation {
+            max-width: 100%;
+            min-width: 100%;
+        }
+    }
+
+    .projects .project {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        gap: 15px;
+        padding: 12px;
+
+        a {
+            font-size: 0.9rem;
+        }
+    }
+
+    header, section {
+        padding: 40px 3%;
+    }
+
+    header h1 {
+        margin-bottom: 15px;
+    }
+
+    .about-me .box {
+        padding: 15px;
+    }
+
+    .formations .formation {
+        padding: 20px;
+    }
+
+    .skills .skill-category {
+        padding: 15px;
+    }
+
+    .projects .project {
+        padding: 12px;
+    }
+
+    .contacts {
+        flex-direction: column;
+        gap: 15px;
+
+        .contact {
+            justify-content: center;
+        }
     }
 }
